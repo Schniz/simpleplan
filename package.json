@@ -2,7 +2,7 @@
   "name": "simpleplan",
   "version": "0.0.1",
   "description": "Simple dependency injector for your precious node apps.",
-  "main": "simpleplan.js",
+  "main": "./lib/simpleplan.js",
   "scripts": {
     "test": "mocha"
   },
@@ -24,7 +24,7 @@
   },
   "author": "Gal Schlezinger (gal@spitfire.co.il)",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "mocha": "~1.18.2",
     "chai": "~1.9.1",
     "blanket": "~1.1.6"
