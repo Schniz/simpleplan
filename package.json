@@ -6,8 +6,24 @@
   "scripts": {
     "test": "mocha"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Schniz/simpleplan.git"
+  },
+  "keywords": [
+    "dependency",
+    "injection",
+    "node",
+    "simple",
+    "dependency injection",
+    "ioc",
+    "dep"
+  ],
+  "bugs" : {
+    "url": "https://github.com/Schniz/simpleplan/issues"
+  },
   "author": "Gal Schlezinger (gal@spitfire.co.il)",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "mocha": "~1.18.2",
     "chai": "~1.9.1",
