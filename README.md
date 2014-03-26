@@ -1,5 +1,4 @@
-simpleplan.js
-=============
+![simpleplan.js](http://cl.ly/image/0n2w001f3p0X/logo.png)
 
 Simple dependency injector for your precious node apps.
 
