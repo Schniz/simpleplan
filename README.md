@@ -57,7 +57,7 @@ Same as `use(params)` only here you don't need to give in an array of dependency
 ```js
 var somefunc = function(a,b,c) {
   console.log("a: " + a + ", b: " + b + ", c: " + c);
-};
+}.inject();
 
 somefunc({ b: "First", c: "Second", a: "Gal Schlezinger" }); // "a: Gal Schlezinger, b: First, c: Second"
 ```
