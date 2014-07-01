@@ -1,6 +1,6 @@
 {
   "name": "simpleplan",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple dependency injector for your precious node apps.",
   "main": "./lib/simpleplan.js",
   "scripts": {
