@@ -1,2 +1,3 @@
 --reporter spec
 --require blanket
+--compilers coffee:coffee-script/register
