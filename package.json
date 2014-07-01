@@ -19,7 +19,7 @@
     "ioc",
     "dep"
   ],
-  "bugs" : {
+  "bugs": {
     "url": "https://github.com/Schniz/simpleplan/issues"
   },
   "author": "Gal Schlezinger (gal@spitfire.co.il)",
@@ -27,11 +27,12 @@
   "devDependencies": {
     "mocha": "~1.18.2",
     "chai": "~1.9.1",
-    "blanket": "~1.1.6"
+    "blanket": "~1.1.6",
+    "coffee-script": "~1.7.1"
   },
   "config": {
     "blanket": {
       "pattern": "lib/simpleplan"
     }
-  }  
+  }
 }

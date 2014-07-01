@@ -17,6 +17,10 @@ describe("simpleplan", function() {
     expect(simpleplan).to.not.throw(Error);
   });
 
+  it("should be able to use only the #inject function", function() {
+    expect(simpleplan.inject).to.be.a('function');
+  });
+
   describe("after calling", function() {
     var myfunc;
     var myfuncWithoutArguments;
