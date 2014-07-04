@@ -12,10 +12,10 @@ describe "CoffeeScript integration", ->
   describe "after calling", ->
     myfunc = null
     myfuncWithoutArguments = null
-    { use, inject } = require('../lib/simpleplan')
+    { use, inject, register } = require('../lib/simpleplan')
 
     before ->
-      myfunc = (firstMessage, secondMessage) -> "#{firstMessage}, #{secondMessage}"
+      myfunc = (coffeeFirstMessage, coffeeSecondMessage) -> "#{coffeeFirstMessage}, #{coffeeSecondMessage}"
       myfuncWithoutArguments = -> "this is a function."
 
     describe "#use", ->
@@ -26,10 +26,10 @@ describe "CoffeeScript integration", ->
           ho: 'bet'
         expect(alefbet).to.equal "alef, bet"
 
-        used = use myfunc, "secondMessage", "firstMessage"
+        used = use myfunc, "coffeeSecondMessage", "coffeeFirstMessage"
         betalef = used
-          firstMessage: 'alef'
-          secondMessage: 'bet'
+          coffeeFirstMessage: 'alef'
+          coffeeSecondMessage: 'bet'
         expect(betalef).to.equal "bet, alef"
 
       it "should work with a function without arguments", ->
@@ -41,15 +41,15 @@ describe "CoffeeScript integration", ->
       it "should work with normal arguments", ->
         injected = inject myfunc
         alefbet = injected
-          firstMessage: 'alef'
-          secondMessage: 'bet'
+          coffeeFirstMessage: 'alef'
+          coffeeSecondMessage: 'bet'
         expect(alefbet).to.equal("alef, bet")
 
       it "should raise an error if a parameter is left with no injection", ->
         expect(->
           injected = inject myfunc
 
-          injected firstMessage: 'alef'
+          injected coffeeFirstMessage: 'alef'
         ).to.throw Error
 
       it "should work with external modules", ->
@@ -60,3 +60,18 @@ describe "CoffeeScript integration", ->
       it "should work with a function without arguments", ->
         value = myfuncWithoutArguments.inject()({ someArgument: 'arggggg' })
         expect(value).to.equal('this is a function.')
+
+      describe "register use", ->
+        injectedFunc = null
+
+        before ->
+          register "coffeeFirstMessage", "howdy"
+          register "coffeeSecondMessage", "world!"
+
+          injectedFunc = inject myfunc
+
+        it "should complete the missing dependencies from the registry", ->
+          expect(injectedFunc()).to.equal "howdy, world!"
+          expect(injectedFunc(coffeeFirstMessage: "wat")).to.equal "wat, world!"
+          expect(injectedFunc(coffeeSecondMessage: "wat")).to.equal "howdy, wat"
+          expect(injectedFunc(coffeeSecondMessage: "b", coffeeFirstMessage: "a")).to.equal "a, b"
