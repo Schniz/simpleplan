@@ -24,9 +24,10 @@ describe("simpleplan", function() {
   describe("after calling", function() {
     var myfunc;
     var myfuncWithoutArguments;
+    var simpleplanInstance;
 
     before(function() {
-      simpleplan();
+      simpleplanInstance = simpleplan();
 
       myfunc = function(firstMessage, secondMessage) {
         return firstMessage + ", " + secondMessage;
@@ -82,6 +83,24 @@ describe("simpleplan", function() {
       it("should work with a function without arguments", function() {
         var value = myfuncWithoutArguments.inject()({ someArgument: 'arggggg' });
         expect(value).to.equal('this is a function.');
+      });
+
+      describe("register use:", function() {
+        before(function() {
+          simpleplanInstance.register('firstMessage', 'howdy');
+          simpleplanInstance.register('secondMessage', 'world!');
+        });
+
+        it("should pass the registered dependencies when caled without arguments", function() {
+          var value = myfunc.inject()();
+
+          expect(value).to.equal("howdy, world!");
+        });
+
+        it("should complete the missing dependencies from the register", function() {
+          expect(myfunc.inject()({ firstMessage: "wat" })).to.equal("wat, world!");
+          expect(myfunc.inject()({ secondMessage: "wat" })).to.equal("howdy, wat");
+        })
       });
     });
   });
